@@ -27,16 +27,16 @@ Why settle for overpriced, gated AI models when Hopium is open, free, and built 
 
 ## Quick Start
 
-1. Sign up at [hopium.ai](https://hopium.ai) or run locally with Ollama
+1. Sign up at [hopium.dev](https://hopium.dev) or run locally with Ollama
 2. Grab your API key from the dashboard
-3. Point your tool of choice at `https://api.hopium.ai/v1` with model `hopium/latest`
+3. Point your tool of choice at `https://api.hopium.dev/v1` with model `hopium/latest`
 
 ### Using with any client
 
 Hopium is OpenAI-compatible, so it works with any client that supports the OpenAI API:
 
 ```bash
-curl https://api.hopium.ai/v1/chat/completions \
+curl https://api.hopium.dev/v1/chat/completions \
   -H "Authorization: Bearer $HOPIUM_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"model":"hopium/latest","messages":[{"role":"user","content":"Write a hello world in Python"}]}'
@@ -46,7 +46,7 @@ curl https://api.hopium.ai/v1/chat/completions \
 
 | Setting | Value | Description |
 |---------|-------|-------------|
-| API Endpoint | `https://api.hopium.ai/v1` | Hopium hosted endpoint |
+| API Endpoint | `https://api.hopium.dev/v1` | Hopium hosted endpoint |
 | Model | `hopium/latest` | Latest Hopium model |
 | API Key | (from dashboard) | Your free Hopium API key |
 | Ollama Model | `hopium` | Local model name for Ollama |
@@ -59,7 +59,7 @@ curl https://api.hopium.ai/v1/chat/completions \
 from openai import OpenAI
 
 client = OpenAI(
-    base_url="https://api.hopium.ai/v1",
+    base_url="https://api.hopium.dev/v1",
     api_key="your-hopium-api-key"
 )
 
@@ -75,7 +75,7 @@ response = client.chat.completions.create(
 import OpenAI from 'openai';
 
 const client = new OpenAI({
-    baseURL: 'https://api.hopium.ai/v1',
+    baseURL: 'https://api.hopium.dev/v1',
     apiKey: 'your-hopium-api-key'
 });
 
