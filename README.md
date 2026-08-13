@@ -2,20 +2,20 @@
 
 ![banner](Assets/logo.jpg)
 
-The open AI model that lives up to the hype. Built to be the best-paired brain for Copium, Hopium gives you a smart, free, no-account AI model that actually delivers when it counts.
+The open AI model that lives up to the hype. Hopium gives you a smart, free, no-account AI model that actually delivers when it counts, built for developers who want real power without the price tag.
 
 ## Why Hopium
 
-Why settle for overpriced, gated AI models when Hopium is open, free, and built to pair with Copium. Hopium is the model that powers your Copium coding agent — giving you top-tier reasoning, coding, and problem-solving without subscriptions, waitlists, or required accounts.
+Why settle for overpriced, gated AI models when Hopium is open, free, and built for real work. Hopium is an open AI model giving you top-tier reasoning, coding, and problem-solving without subscriptions, waitlists, or required accounts.
 
 ## Features
 
 - **Open model** - Fully open weights, inspectable and auditable
 - **Free by default** - No credit card, no subscription, no account required
-- **Copium-native** - Optimized to pair perfectly with Copium coding agent
 - **Coding-first** - Trained for real-world software engineering tasks
 - **Streaming responses** - Real-time token streaming for fast feedback
 - **Local or hosted** - Run it yourself or use a hosted endpoint
+- **Easy integration** - OpenAI-compatible API, drop into any tool that speaks OpenAI
 
 ## Supported Providers
 
@@ -24,51 +24,68 @@ Why settle for overpriced, gated AI models when Hopium is open, free, and built 
 | Hopium Hosted | hopium/latest | Free tier available, no API key needed |
 | BYOK | hopium-custom | Bring your own OpenAI-compatible endpoint |
 | Ollama | hopium | Run locally, fully offline |
-| Copium Native | hopium | Built-in support in Copium extension |
 
 ## Quick Start
 
-1. Install Copium extension
-2. Open Settings (Ctrl+,) and search for "Copium"
-3. Set provider to `hopium` or add your Hopium API key
-4. Start coding with Copium + Hopium
+1. Sign up at [hopium.ai](https://hopium.ai) or run locally with Ollama
+2. Grab your API key from the dashboard
+3. Point your tool of choice at `https://api.hopium.ai/v1` with model `hopium/latest`
 
-### Using with Copium
+### Using with any client
 
-Open the Copium chat and start chatting — Hopium is the default brain when you select the Hopium provider:
+Hopium is OpenAI-compatible, so it works with any client that supports the OpenAI API:
 
-```
-@copium implement a REST API with Express and TypeScript
+```bash
+curl https://api.hopium.ai/v1/chat/completions \
+  -H "Authorization: Bearer $HOPIUM_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"model":"hopium/latest","messages":[{"role":"user","content":"Write a hello world in Python"}]}'
 ```
 
 ## Configuration
 
-| Setting | Default | Description |
-|---------|---------|-------------|
-| copium.provider | hopium | Model provider |
-| copium.hopium.apiKey | (empty) | Hopium API key |
-| copium.hopium.model | hopium/latest | Model ID |
-| copium.byok.endpoint | https://api.hopium.ai/v1 | BYOK endpoint |
-| copium.byok.apiKey | (empty) | BYOK API key |
-| copium.byok.model | hopium-custom | BYOK model name |
-| copium.ollama.model | hopium | Ollama model name |
-| copium.telemetry.enabled | false | Opt-in telemetry |
+| Setting | Value | Description |
+|---------|-------|-------------|
+| API Endpoint | `https://api.hopium.ai/v1` | Hopium hosted endpoint |
+| Model | `hopium/latest` | Latest Hopium model |
+| API Key | (from dashboard) | Your free Hopium API key |
+| Ollama Model | `hopium` | Local model name for Ollama |
 
-## Commands
+## Integration Examples
 
-All Copium commands work with Hopium:
+### Python
 
-- `Copium: Start Agent Task` - Start a Copium agent task powered by Hopium
-- `Copium: Explain Selection` - Explain the current selection
-- `Copium: Fix Diagnostic` - Fix the current diagnostic
-- `Copium: Apply Edit` - Apply an edit to the current file
+```python
+from openai import OpenAI
 
-## Chat Commands
+client = OpenAI(
+    base_url="https://api.hopium.ai/v1",
+    api_key="your-hopium-api-key"
+)
 
-- `@copium <prompt>` - Chat with Copium + Hopium
-- `@copium /swarm <prompt>` - Spawn swarm agents powered by Hopium
+response = client.chat.completions.create(
+    model="hopium/latest",
+    messages=[{"role": "user", "content": "Write a hello world in Python"}]
+)
+```
 
-## Development
+### Node.js
+
+```javascript
+import OpenAI from 'openai';
+
+const client = new OpenAI({
+    baseURL: 'https://api.hopium.ai/v1',
+    apiKey: 'your-hopium-api-key'
+});
+
+const response = await client.chat.completions.create({
+    model: 'hopium/latest',
+    messages: [{ role: 'user', content: 'Write a hello world in Python' }]
+});
+```
+
+## Local Development
 
 ```bash
 pnpm install
@@ -80,6 +97,6 @@ npm test
 
 MIT
 
-## Disclaimer
+## Pairing
 
-This project was developed with assistance from Kilo Code for bug finding, code review, and implementation support. Kilo Code helped identify issues, suggest fixes, and implement features throughout the development process.
+Works best combined with Copium :D
